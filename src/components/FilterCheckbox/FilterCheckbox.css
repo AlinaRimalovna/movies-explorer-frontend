@@ -1,0 +1,116 @@
+.checkbox {
+  background: #202020;
+  display: flex;
+  margin: 20px auto 0 auto;
+  width: 89%;
+}
+
+@media screen and (max-width: 800px) {
+  .checkbox {
+    width: 92%;
+    justify-content: end;
+    flex-direction: row-reverse;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .checkbox {
+    justify-content: center;
+    margin-top: 30px;
+  }
+}
+
+.checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+}
+
+.checkbox__switch {
+  position: relative;
+  display: inline-block;
+  margin-right: 14px;
+  vertical-align: middle;
+  width: 36px;
+  height: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .checkbox__switch {
+    margin-top: 3px;
+    margin-right: 0;
+
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .checkbox__switch {
+    margin-top: 0px;
+  }
+}
+
+.checkbox__slider {
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #EBEBEB;
+  -webkit-transition: .4s;
+  transition: .4s;
+  width: 36px;
+  height: 20px;
+  border-radius: 34px;
+}
+
+.checkbox__slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 3px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.checkbox__input:checked+.checkbox__slider {
+  background-color: #3DDC84;
+}
+
+.checkbox__input:focus+.checkbox__slider {
+  box-shadow: 0 0 1px #3DDC84;
+}
+
+.checkbox__input:checked+.checkbox__slider:before {
+  -webkit-transform: translateX(5px);
+  -ms-transform: translateX(5px);
+  transform: translateX(13px);
+}
+
+.checkbox__text {
+  color: #FFF;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+@media screen and (max-width: 800px) {
+  .checkbox__text {
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .checkbox__text {
+    font-size: 11px;
+  }
+}
