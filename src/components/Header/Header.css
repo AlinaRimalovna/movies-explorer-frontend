@@ -306,7 +306,7 @@
   opacity: 0.7;
 }
 
-.header__button_out {
+.header__menu-button {
   position: fixed;
   top: 24px;
   right: 24px;
@@ -322,7 +322,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .header__button_out {
+  .header__menu-button {
     background-image: url(../../images/delete_b.svg);
     display: block;
     width: 32px;

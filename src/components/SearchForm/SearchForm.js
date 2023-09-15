@@ -2,10 +2,10 @@ import React from 'react';
 
 function SearchForm() {
   return (
-    <div className="searchForm">
-      <input className="searchForm__input" placeholder='Фильм'></input>
+    <form className="searchForm">
+      <input className="searchForm__input" type="text" placeholder='Фильм' required></input>
       <button className="searchForm__button"></button>
-    </div>
+    </form>
   );
 }
 

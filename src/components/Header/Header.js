@@ -23,7 +23,7 @@ function Header({ isProfile }) {
 
 
   return (
-    <header className={`header ${location.pathname === "/" && 'header_type_main'}`}>
+    <header className={`header ${location.pathname === "/" && 'header_type_main'} ${location.pathname === "/sign-in" && 'header_type_hidden'} ${location.pathname === "/sign-up" && 'header_type_hidden'} ${location.pathname === "/404" && 'header_type_hidden'}`}>
       <div className="header__main">
         <img className="header__logo" src={logo} alt="логотип сайта" />
         {isLogged && <div className="header__info">
@@ -42,7 +42,7 @@ function Header({ isProfile }) {
           </div>}
         <button className={`header__burger ${location.pathname === "/" && 'header__burger_type-main'}`} onClick={handleMenuClick}></button>
         <div className={`header__menu ${isMenuOpen ? "header__menu_opened" : ""}`}>
-          <button className="header__button_out" type="button" aria-label="Закрыть" onClick={closeMenu}></button>
+          <button className="header__menu-button" type="button" aria-label="Закрыть" onClick={closeMenu}></button>
           <div className="header__menu-box">
             <nav class="header__links">
               <Link to="/" className="header__link">Главная</Link>

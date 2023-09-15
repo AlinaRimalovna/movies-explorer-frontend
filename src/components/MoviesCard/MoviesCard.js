@@ -13,7 +13,7 @@ function MoviesCard({ link, name, handleDeleteClick, handleLikeClick, duration, 
   );
   return (
     <article className="movie">
-      <img className="movie__image" src={movie} alt={name} onClick={handleCardClick} />
+      <img className="movie__image" src={movie} alt="обложка фильма" onClick={handleCardClick} />
       <div className="movie__info">
         <h2 className="movie__title">33 слова о дизайне</h2>
         {location.pathname === "/saved-movies" && <button className="movie__delete" type="button" aria-label="Удалить" onClick={handleDeleteClick}></button>}

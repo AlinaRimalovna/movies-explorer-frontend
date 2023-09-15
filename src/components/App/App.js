@@ -12,11 +12,14 @@ import SavedMovies from '../SavedMovies/SavedMovies.js'
 import Profile from '../Profile/Profile.js'
 import NotFound from '../NotFound/NotFound.js'
 import Main from '../Main/Main.js'
+import Header from '../Header/Header.js'
+import Footer from '../Footer/Footer.js'
 
 function App() {
   return (
     <>
       {/* <CurrentUserContext.Provider value={currentUser}> */}
+      <Header />
       <Routes>
         <Route path="/" element={
           <Main />
@@ -42,6 +45,7 @@ function App() {
         {/* <Route path="/" element={loggedIn ? <Navigate to="/sign-in" replace /> : <Navigate to="/sign-up" replace />} /> */}
 
       </Routes>
+      <Footer />
       {/* </CurrentUserContext.Provider> */}
     </>
 

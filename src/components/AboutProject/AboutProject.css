@@ -193,20 +193,20 @@
   background-color: #303030;
 }
 
-.about__caption_frontend {
+.about__caption-frontend {
   width: 80%;
   text-align: center;
 
 }
 
-.about__caption_backend {
+.about__caption-backend {
   width: 20%;
   text-align: center;
 
 }
 
 @media screen and (max-width: 500px) {
-  .about__caption_backend {
+  .about__caption-backend {
     width: 43%;
   }
 }

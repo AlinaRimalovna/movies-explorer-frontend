@@ -1,11 +1,9 @@
 import React from 'react';
-import Header from '../Header/Header.js'
 
 function Profile({ name, email, error }) {
   const isEdit = false;
   return (
     <>
-      <Header />
       <div className="profile">
         <h1 className="profile__title">Привет, Виталий!</h1>
         <div className="profile__box">

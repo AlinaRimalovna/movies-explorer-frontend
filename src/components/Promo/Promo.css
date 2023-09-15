@@ -159,7 +159,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
   .promo__logo {
     width: 210px;
     height: 206px;

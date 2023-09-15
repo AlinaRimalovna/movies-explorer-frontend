@@ -2,6 +2,8 @@
   font-family: 'Inter', Arial, sans-serif;
   background-color: #202020;
   min-height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;

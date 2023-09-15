@@ -26,10 +26,10 @@ function AboutProject() {
         </div>
       </div>
       <div className="about__caption">
-        <div className="about__caption_backend">
+        <div className="about__caption-backend">
           <p className="about__caption-text">Back-end</p>
         </div>
-        <div className="about__caption_frontend">
+        <div className="about__caption-frontend">
           <p className="about__caption-text">Front-end</p>
         </div>
       </div>

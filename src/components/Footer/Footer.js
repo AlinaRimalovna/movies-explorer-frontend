@@ -1,8 +1,10 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Footer() {
+  const location = useLocation();
   return (
-    <section class="footer" >
+    <section class={`footer ${location.pathname === "/profile" && 'footer_type_hidden'} ${location.pathname === "/sign-in" && 'footer_type_hidden'} ${location.pathname === "/sign-up" && 'footer_type_hidden'} ${location.pathname === "/404" && 'footer_type_hidden'}`}>
       <div className="footer__heading">
         <h1 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h1>
       </div>
