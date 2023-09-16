@@ -1,0 +1,132 @@
+.portfolio {
+  background: #202020;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.portfolio__main {
+  width: 89.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 103px;
+}
+
+@media screen and (max-width: 800px) {
+  .portfolio__main {
+    width: 87.6%;
+    margin-bottom: 64px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio__main {
+    width: 91%;
+    margin-bottom: 46px;
+  }
+}
+
+.portfolio__title {
+  color: #8B8B8B;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 0 30px;
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio__title {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+}
+
+.portfolio__links {
+  display: block;
+  border-bottom: 1px solid #424242;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+
+.portfolio__links:hover {
+  opacity: 0.8;
+}
+
+.portfolio__links:last-child {
+  border: none;
+}
+
+@media screen and (max-width: 800px) {
+  .portfolio__links {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio__links {
+    margin-top: 22px;
+    /* align-items:flex-start */
+  }
+}
+
+.portfolio__project {
+  color: #FFF;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -1.2px;
+  margin: 0 0 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .portfolio__project {
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio__project {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.72px;
+    margin-bottom: 17px;
+  }
+}
+
+.portfolio__link {
+  width: 17px;
+  height: 50px;
+  margin-bottom: 15px;
+  margin-right: 7px;
+}
+
+@media screen and (max-width: 800px) {
+  .portfolio__link {
+    margin-top: 8px;
+    width: 17px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio__link {
+    display: block;
+    margin-top: 0px;
+    width: 11px;
+    height: 10px;
+  margin-right: 5px;
+  }
+}

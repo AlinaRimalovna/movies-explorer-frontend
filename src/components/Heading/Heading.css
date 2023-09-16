@@ -1,0 +1,40 @@
+.heading {
+  width: 89%;
+  border-bottom: 1px solid #DADADA;
+  margin-top: 85px;
+}
+
+@media screen and (max-width: 800px) {
+  .heading {
+    margin-top: 76px;
+    width: 87.2%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .heading {
+    margin-top: 50px;
+    width: 89%;
+  }
+}
+
+.heading__title {
+  color: #FFF;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin-bottom: 25px;
+  align-items: start;
+}
+
+@media screen and (max-width: 500px) {
+  .heading__title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    margin-top: 0;
+    margin-bottom: 27px;
+  }
+}
