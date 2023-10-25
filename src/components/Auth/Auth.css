@@ -107,12 +107,13 @@ align-items: center;
 }
 
 .auth__input_type_error {
-  color: #EE3465;
+border: 2px solid  #EE3465;
 }
 
-.auth__input:focus {
-  outline-color: #FFF;
-}
+/* .auth__input:focus {
+  /* outline-color: #FFF; */
+  /* border: 1px solid #fff;
+}  */
 
 @media screen and (max-width: 500px) {
   .auth__input {
@@ -139,6 +140,12 @@ align-items: center;
 
 .auth__button:hover {
   opacity: 0.8;
+}
+
+.auth__button:disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+  /* opacity: 0.3; */
 }
 
 @media screen and (max-width: 500px) {

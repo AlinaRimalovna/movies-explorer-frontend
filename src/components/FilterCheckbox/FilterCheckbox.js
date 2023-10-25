@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function FilterCheckbox() {
+function FilterCheckbox({ onClick }) {
+  const [isFilter, setIsFilter] = useState(localStorage.getItem('checkFilter') || false);
+  function handleClick (isFilter) {
+    onClick(isFilter)
+  }
   return (
     <div className="checkbox">
-      <label className="checkbox__switch">
+      <label className="checkbox__switch" onChange={handleClick} checked={isFilter}>
         <input className="checkbox__input" type="checkbox"></input>
         <span className="checkbox__slider"></span>
       </label>

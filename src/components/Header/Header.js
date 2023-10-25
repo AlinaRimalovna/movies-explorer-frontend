@@ -1,9 +1,8 @@
-import logo from '../../images/logo.svg';
 import icon from '../../images/icon-main.svg';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Header({ isProfile }) {
+function Header({ loggedIn, isProfile }) {
   // const navigate = useNavigate();
   const location = useLocation();
   const isLogged = true;
@@ -12,6 +11,7 @@ function Header({ isProfile }) {
   //   localStorage.removeItem("jwt");
   //   navigate('/sign-up');
   // }
+
 
   function handleMenuClick() {
     setMenuOpen(true);
@@ -25,12 +25,12 @@ function Header({ isProfile }) {
   return (
     <header className={`header ${location.pathname === "/" && 'header_type_main'} ${location.pathname === "/sign-in" && 'header_type_hidden'} ${location.pathname === "/sign-up" && 'header_type_hidden'} ${location.pathname === "/404" && 'header_type_hidden'}`}>
       <div className="header__main">
-        <img className="header__logo" src={logo} alt="логотип сайта" />
-        {isLogged && <div className="header__info">
+        <Link to="/" className="header__logo"></Link>
+        {loggedIn && <div className="header__info">
           <Link to="/movies" className="header__movie-link">Фильмы</Link>
           <Link to="/saved-movies" className="header__movie-link">Сохраненные фильмы</Link>
         </div>}
-        {isLogged ? <div className='header__profile' >
+        {loggedIn ? <div className='header__profile' >
           <Link to="/profile" className="header__account">Аккаунт</Link>
           <div className={`header__icon-box ${location.pathname === "/" && 'header__icon-box_type-main'}`}>
             <img className="header__icon" alt="иконка аккаунта" src={icon} />
