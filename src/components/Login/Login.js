@@ -1,5 +1,5 @@
 import Auth from "../Auth/Auth.js";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormValidation } from "../Validate/Validate";
 
 function Login({ onLogin }) {
@@ -19,18 +19,21 @@ function Login({ onLogin }) {
       ...formValue,
       [name]: value
     });
-    if (!errors.email) {
-      setIsEmailError(true)
-    } else {setIsEmailError(false)}
-    if (!errors.password) {
-      setIsPasswordError(true)
-    } else {setIsPasswordError(false)}
   }
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin(email, password);
     resetForm();
   }
+  useEffect(() => {
+    if (!errors.email) {
+      setIsEmailError(true)
+    } else {setIsEmailError(false)}
+    if (!errors.password) {
+      setIsPasswordError(true)
+    } else {setIsPasswordError(false)}
+  }, [formValue])
+
   return (
     <Auth
       form="login"

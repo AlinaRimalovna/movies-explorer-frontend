@@ -1,12 +1,11 @@
 import Auth from "../Auth/Auth";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormValidation } from "../Validate/Validate";
-
 function Register({ onRegister }) {
   const {values, handleChange, errors, isValid, isError, resetForm} = useFormValidation();
-  const [isNameError, setIsNameError] = useState(false);
-  const [isPasswordError, setIsPasswordError] = useState(false);
-  const [isEmailError, setIsEmailError] = useState(false);
+  const [isNameError, setIsNameError] = useState();
+  const [isPasswordError, setIsPasswordError] = useState();
+  const [isEmailError, setIsEmailError] = useState();
   const [formValue, setFormValue] = useState({
     name: '',
     email: '',
@@ -24,15 +23,6 @@ console.log(values)
       ...formValue,
       [name]: value
     });
-    if (!errors.name) {
-      setIsNameError(true)
-    } else {setIsNameError(false)}
-    if (!errors.email) {
-      setIsEmailError(true)
-    } else {setIsEmailError(false)}
-    if (!errors.password) {
-      setIsPasswordError(true)
-    } else {setIsPasswordError(false)}
   }
 
   const handleSubmit = (e) => {
@@ -46,6 +36,18 @@ console.log(values)
     onRegister(formValue.name, email, password);
     resetForm();
   }
+
+  useEffect(() => {
+    if (!errors.name) {
+      setIsNameError(true)
+    } else {setIsNameError(false)}
+    if (!errors.email) {
+      setIsEmailError(true)
+    } else {setIsEmailError(false)}
+    if (!errors.password) {
+      setIsPasswordError(true)
+    } else {setIsPasswordError(false)}
+  }, [formValue])
 
   return (
     <>
