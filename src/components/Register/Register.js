@@ -2,7 +2,7 @@ import Auth from "../Auth/Auth";
 import React, { useState, useEffect } from 'react';
 import { useFormValidation } from "../Validate/Validate";
 function Register({ onRegister }) {
-  const {values, handleChange, errors, isValid, isError, resetForm} = useFormValidation();
+  const { values, handleChange, errors, isValid, isError, resetForm } = useFormValidation();
   const [isNameError, setIsNameError] = useState();
   const [isPasswordError, setIsPasswordError] = useState();
   const [isEmailError, setIsEmailError] = useState();
@@ -12,13 +12,12 @@ function Register({ onRegister }) {
     password: '',
   })
 
-  const {name, email, password } = formValue;
+  const { name, email, password } = formValue;
 
 
   const handleChangeRegister = (e) => {
     const { name, value } = e.target;
     handleChange(e);
-console.log(values)
     setFormValue({
       ...formValue,
       [name]: value
@@ -27,7 +26,7 @@ console.log(values)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-        const { name, value } = e.target;
+    const { name, value } = e.target;
 
     setFormValue({
       ...formValue,
@@ -40,13 +39,13 @@ console.log(values)
   useEffect(() => {
     if (!errors.name) {
       setIsNameError(true)
-    } else {setIsNameError(false)}
+    } else { setIsNameError(false) }
     if (!errors.email) {
       setIsEmailError(true)
-    } else {setIsEmailError(false)}
+    } else { setIsEmailError(false) }
     if (!errors.password) {
       setIsPasswordError(true)
-    } else {setIsPasswordError(false)}
+    } else { setIsPasswordError(false) }
   }, [formValue])
 
   return (
@@ -56,19 +55,19 @@ console.log(values)
         title="Добро пожаловать!"
         button="Зарегистрироваться"
         sign="Уже зарегистрированы?"
-      onSubmit={handleSubmit}
-      onChange={handleChangeRegister}
-      user={formValue.name}
-      nameErrors={errors.name}
-      email={formValue.email}
-      emailErrors={errors.email}
-      password={formValue.password}
-      passwordErrors={errors.password}
-      isValid={isValid}
-      isError={isError}
-      isNameError={isNameError}
-      isEmailError={isEmailError}
-      isPasswordError={isPasswordError}
+        onSubmit={handleSubmit}
+        onChange={handleChangeRegister}
+        user={formValue.name}
+        nameErrors={errors.name}
+        email={formValue.email}
+        emailErrors={errors.email}
+        password={formValue.password}
+        passwordErrors={errors.password}
+        isValid={isValid}
+        isError={isError}
+        isNameError={isNameError}
+        isEmailError={isEmailError}
+        isPasswordError={isPasswordError}
       >
       </Auth>
     </>

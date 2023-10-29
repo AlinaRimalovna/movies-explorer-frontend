@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 function Profile({ onUpdateUser, error, signOut }) {
-  const navigate = useNavigate();
+
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [isEdit, setEdit] = useState(false);
@@ -32,7 +31,6 @@ function Profile({ onUpdateUser, error, signOut }) {
 
   function handleSignOut() {
     signOut()
-    // navigate('/sign-up');
   }
 
   return (
@@ -54,7 +52,7 @@ function Profile({ onUpdateUser, error, signOut }) {
         <button className="profile__button">Редактировать</button>
         <span className="profile__error">{error}</span>
         {isEdit && <button className="profile__button-save" onClick={handleSubmit}>Сохранить</button>}
-        <button className="profile__button-out"onClick={handleSignOut}>Выйти из аккаунта</button>
+        <button className="profile__button-out" onClick={handleSignOut}>Выйти из аккаунта</button>
       </div>
     </>
   );

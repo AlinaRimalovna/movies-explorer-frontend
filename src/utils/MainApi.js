@@ -4,11 +4,11 @@ class Api {
     this._headers = headers
   }
   _checkResponse(res) {
-  if (res.ok) {
-    return res.json();
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
-  return Promise.reject(`Ошибка: ${res.status}`);
-}
 
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
@@ -16,7 +16,7 @@ class Api {
       credentials: 'include',
       headers: this._headers
     })
-    .then(this._checkResponse);
+      .then(this._checkResponse);
   }
 
   changeUserInfo(name, email) {
@@ -26,16 +26,16 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({ name, email })
     })
-    .then(this._checkResponse);
+      .then(this._checkResponse);
   }
 
   getMovies() {
     return fetch(`${this._url}/movies`, {
-     credentials: 'include',
+      credentials: 'include',
       headers: this._headers
     })
-    .then(this._checkResponse);
-  } 
+      .then(this._checkResponse);
+  }
 
   addNewMovie(
     country,
@@ -64,9 +64,10 @@ class Api {
         thumbnail,
         movieId,
         nameRU,
-        nameEN })
+        nameEN
+      })
     })
-    .then(this._checkResponse);
+      .then(this._checkResponse);
   }
   deleteMovie(movieId) {
     return fetch(`${this._url}/movies/${movieId}`, {
@@ -74,16 +75,13 @@ class Api {
       credentials: 'include',
       headers: this._headers,
     })
-    .then(this._checkResponse);
+      .then(this._checkResponse);
   }
 }
 
 export const api = new Api({
   url: 'https://api.alina-movie.nomoredomainsicu.ru',
   headers: {
-    // 'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
 });
-
-// http://localhost:3005
