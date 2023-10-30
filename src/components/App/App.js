@@ -24,6 +24,7 @@ import Footer from "../Footer/Footer.js";
 import Preloader from "../Preloader/Preloader.js";
 import InfoTooltip from "../InfoToolTip/InfoToolTip.js";
 import * as UserAuth from "../../utils/UserAuth.js";
+import { useFormValidation } from "../Validate/Validate";
 
 function App() {
   const [loggedIn, setloggedIn] = useState(false);
@@ -44,22 +45,19 @@ function App() {
   const [searchName, setSearchName] = useState(
     localStorage.getItem("searchName") || ""
   );
-  const [mySearchName, setMySearchName] = useState(
-    localStorage.getItem("mySearchName") || ""
-  );
+  const [mySearchName, setMySearchName] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [isFilter, setIsFilter] = useState(
     JSON.parse(localStorage.getItem("checkFilter")) || false
   );
-  const [isMyFilter, setIsMyFilter] = useState(
-    JSON.parse(localStorage.getItem("checkMyFilter")) || false
-  );
+  const [isMyFilter, setIsMyFilter] = useState(false);
   const [isFound, setIsFound] = useState(false);
   const [isMyFound, setIsMyFound] = useState(false);
   const [cardView, setCardView] = useState(16);
   const [isMore, setIsMore] = useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [errorText, setErrorText] = useState("");
+  const { values, handleChange, errors, isValid, isError, resetForm } = useFormValidation();
 
   function closeAllPopups() {
     setInfoTooltipOpen(false);
@@ -72,6 +70,7 @@ function App() {
         setLoading(false);
         setloggedIn(true);
         navigate("/movies");
+        resetForm();
       })
       .catch((err) => {
         setLoading(false);
@@ -88,6 +87,7 @@ function App() {
         setLoading(false);
         setloggedIn(true);
         navigate("/movies");
+        resetForm();
       })
       .catch((err) => {
         setLoading(false);
@@ -148,8 +148,11 @@ function App() {
       .then((res) => {
         setLoading(false);
         setCurrentUser(res);
+        setInfoTooltipOpen(true);
+        setErrorText("Данные успешно обновлены!");
       })
       .catch((err) => {
+        setLoading(false);
         setInfoTooltipOpen(true);
         setErrorText(err);
         console.log(err);
@@ -163,7 +166,9 @@ function App() {
       .then((newMyMovies) => {
         setLoading(false);
         setMyMovies((myMovies) => myMovies.filter((c) => c._id !== id));
-        if (myMovies.length === 0) {
+        if (myMovies.length !== 0) {
+          setIsMyFound(false);
+        } else {
           setIsMyFound(true);
         }
       })
@@ -208,13 +213,18 @@ function App() {
   }
 
   function handleSearchMyMoviesSubmit(mySearchName) {
-    const searchName = localStorage.getItem("mySearchName");
+    setMySearchName(mySearchName)
     const newMyMovies = myFilterMovies.filter((movie) =>
       isMyFilter
-        ? movie.nameRU.toLowerCase().includes(searchName.toLowerCase()) &&
+        ? movie.nameRU.toLowerCase().includes(mySearchName.toLowerCase()) &&
         movie.duration < 40
-        : movie.nameRU.toLowerCase().includes(searchName.toLowerCase())
+        : movie.nameRU.toLowerCase().includes(mySearchName.toLowerCase())
     );
+    if (newMyMovies.length !== 0) {
+      setIsMyFound(false)
+    } else {
+      setIsMyFound(true)
+    }
     setMyMovies(newMyMovies);
   }
 
@@ -249,8 +259,8 @@ function App() {
                 setIsMore(false);
               }
             } else {
-              setMovies(newMovies);
               setIsFound(true);
+              setMovies(newMovies);
               setIsMore(false);
             }
             localStorage.setItem("findMovies", JSON.stringify(newMovies));
@@ -288,8 +298,8 @@ function App() {
             setIsMore(false);
           }
         } else {
-          setMovies(newMovies);
           setIsFound(true);
+          setMovies(newMovies);
           setIsMore(false);
         }
         localStorage.setItem("findMovies", JSON.stringify(newMovies));
@@ -318,7 +328,6 @@ function App() {
   function myHandleSearch(evt) {
     const search = evt.target.value;
     setMySearchName(search);
-    localStorage.setItem("mySearchName", search);
   }
 
   function filterCheckboxChange(evt) {
@@ -388,22 +397,26 @@ function App() {
         setIsMore(false);
       }
     } else {
-      setMovies(newMovies);
       setIsFound(true);
+      setMovies(newMovies);
       setIsMore(false);
     }
     localStorage.setItem("findMovies", JSON.stringify(newMovies));
   }, [isFilter, cardView]);
 
   useEffect(() => {
-    const searchName = localStorage.getItem("mySearchName");
-    if (searchName) {
+    if (mySearchName) {
       const newMovies = myFilterMovies.filter((movie) =>
         isMyFilter
-          ? movie.nameRU.toLowerCase().includes(searchName.toLowerCase()) &&
+          ? movie.nameRU.toLowerCase().includes(mySearchName.toLowerCase()) &&
           movie.duration < 40
-          : movie.nameRU.toLowerCase().includes(searchName.toLowerCase())
+          : movie.nameRU.toLowerCase().includes(mySearchName.toLowerCase())
       );
+      if (newMovies.length !== 0) {
+        setIsMyFound(false)
+      } else {
+        setIsMyFound(true)
+      }
       setMyMovies(newMovies);
     } else {
       const newMovies = myFilterMovies.filter((movie) =>
@@ -411,6 +424,11 @@ function App() {
           ? movie.duration < 40
           : movie.duration > 0
       );
+      if (newMovies.length !== 0) {
+        setIsMyFound(false)
+      } else {
+        setIsMyFound(true)
+      }
       setMyMovies(newMovies);
     }
   }, [isMyFilter]);
@@ -433,7 +451,7 @@ function App() {
           localStorage.setItem("myMovies", JSON.stringify(myMovies));
           setMyFilterMovies(myMovies);
           if (myMovies.length === 0) {
-            setIsFound(true);
+            setIsMyFound(true);
           }
         })
         .catch((err) => {

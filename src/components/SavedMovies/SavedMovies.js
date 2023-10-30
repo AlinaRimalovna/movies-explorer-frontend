@@ -14,7 +14,7 @@ function SavedMovies({ handleSubmit, movies, myMovies, onMovieDelete, onMovieLik
         URL={``}
         onMovieLike={onMovieLike}
         onMovieDelete={onMovieDelete}
-        isFound={isFound}
+        isMyFound={isFound}
       />
     </div>
   );

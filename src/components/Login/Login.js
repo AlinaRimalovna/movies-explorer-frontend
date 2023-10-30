@@ -24,7 +24,6 @@ function Login({ onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin(email, password);
-    resetForm();
   };
   useEffect(() => {
     if (!errors.email) {

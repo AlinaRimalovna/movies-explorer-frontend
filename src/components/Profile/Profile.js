@@ -49,7 +49,6 @@ function Profile({ onUpdateUser, error, signOut }) {
           </label>
           <input type="email" className="profile__input" id="email" name="email" value={userEmail || ""} onChange={handleEmailChange} required />
         </div>
-        <button className="profile__button">Редактировать</button>
         <span className="profile__error">{error}</span>
         {isEdit && <button className="profile__button-save" onClick={handleSubmit}>Сохранить</button>}
         <button className="profile__button-out" onClick={handleSignOut}>Выйти из аккаунта</button>

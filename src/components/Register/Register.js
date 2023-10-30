@@ -33,7 +33,6 @@ function Register({ onRegister }) {
       [name]: value
     });
     onRegister(formValue.name, email, password);
-    resetForm();
   }
 
   useEffect(() => {

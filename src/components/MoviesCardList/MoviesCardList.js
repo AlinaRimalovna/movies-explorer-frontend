@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard.js'
 import { useLocation } from 'react-router-dom';
 
-function MoviesCardList({ movies, myMovies, URL, onMovieDelete, onMovieLike, cardViewz, isFound, handleMore, isMore }) {
+function MoviesCardList({ movies, myMovies, URL, onMovieDelete, onMovieLike, cardViewz, isFound, handleMore, isMore, isMyFound }) {
   const location = useLocation();
   const [cardView, setCardView] = useState(cardViewz);
 
@@ -34,6 +34,7 @@ function MoviesCardList({ movies, myMovies, URL, onMovieDelete, onMovieLike, car
         }
 
       </div>
+      {isMyFound && <p className="cards__notFound">Ничего не найдено</p>}
       {isFound && <p className="cards__notFound">Ничего не найдено</p>}
       {location.pathname === "/movies" && isMore && <button className="cards__button" onClick={handle}>Еще</button>}
     </section>
