@@ -8,7 +8,6 @@ export function useForm() {
     const value = target.value;
     const name = target.name;
     setValues({ ...values, [name]: value });
-    console.log("dfxg");
   };
   return { values, handleChange, setValues };
 }

@@ -145,7 +145,6 @@ border: 2px solid  #EE3465;
 .auth__button:disabled {
   background: #F8F8F8;
   color: #C2C2C2;
-  /* opacity: 0.3; */
 }
 
 @media screen and (max-width: 500px) {
