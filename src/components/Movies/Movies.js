@@ -18,6 +18,7 @@ function Movies({
   isFilter,
   searchName,
   handleSearch,
+
 }) {
   return (
     <div className="movies">

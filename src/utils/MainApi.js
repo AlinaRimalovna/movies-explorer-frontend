@@ -81,6 +81,7 @@ class Api {
 
 export const api = new Api({
   url: 'https://api.alina-movie.nomoredomainsicu.ru',
+  
   headers: {
     'Content-Type': 'application/json'
   }
