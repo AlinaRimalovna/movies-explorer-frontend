@@ -1,42 +1,60 @@
 import Auth from "../Auth/Auth.js";
-import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import * as UserAuth from "../utils/UserAuth.js"
+import React, { useState, useEffect } from "react";
+import { useFormValidation } from "../Validate/Validate";
 
 function Login({ onLogin }) {
-  // const [formValue, setFormValue] = useState({
-  //   email: '',
-  //   password: '',
-  // })
-  // const [error, setError] = useState(" ");
-  // const navigate = useNavigate();
-  // const { email, password } = formValue;
+  const { values, handleChange, errors, isValid, isError, resetForm } =
+    useFormValidation();
+  const [isPasswordError, setIsPasswordError] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [formValue, setFormValue] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = formValue;
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
+  const handleChangeLogin = (e) => {
+    const { name, value } = e.target;
+    handleChange(e);
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin(email, password);
+  };
+  useEffect(() => {
+    if (!errors.email) {
+      setIsEmailError(true);
+    } else {
+      setIsEmailError(false);
+    }
+    if (!errors.password) {
+      setIsPasswordError(true);
+    } else {
+      setIsPasswordError(false);
+    }
+  }, [formValue]);
 
-  //   setFormValue({
-  //     ...formValue,
-  //     [name]: value
-  //   });
-  // }
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   onLogin(email, password);
-  // }
   return (
     <Auth
-      name="login"
+      form="login"
       title="Рады видеть!"
       button="Войти"
       sign="Еще не зарегистрированы?"
-    // onSubmit={handleSubmit}
-    // onChange={handleChange}
-    // email={formValue.email}
-    // password={formValue.password}
-    // error={error}
-    >
-    </Auth>
+      onSubmit={handleSubmit}
+      onChange={handleChangeLogin}
+      email={formValue.email}
+      emailErrors={errors.email}
+      password={formValue.password}
+      passwordErrors={errors.password}
+      isValid={isValid}
+      isError={isError}
+      isEmailError={isEmailError}
+      isPasswordError={isPasswordError}
+    ></Auth>
   );
 }
 

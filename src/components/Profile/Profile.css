@@ -69,18 +69,6 @@
   line-height: normal;
 }
 
-/* 
-.profile__info {
-  min-width: 122px;
-  color: #FFF;
-  text-align: right;
-  font-family: 'Inter', Arial, sans-serif;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-} */
-
 .profile__button {
   background: #202020;
   color: #FFF;
@@ -158,6 +146,11 @@
   opacity: 0.8;
 }
 
+.profile__button-save:disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+}
+
 .profile__input {
   width: 370px;
   text-align: end;
@@ -187,4 +180,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: center;
+  margin-bottom: 10px;
 }

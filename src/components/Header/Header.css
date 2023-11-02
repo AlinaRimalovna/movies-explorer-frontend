@@ -56,11 +56,17 @@
 } */
 
 .header__logo {
+  background-image: url(../../images/logo.svg);
   width: 45px;
   height: 45px;
   margin-top: 18px;
   margin-bottom: 10px;
   box-sizing: border-box;
+  cursor: pointer;
+}
+
+.header__logo:hover {
+  opacity: 0.7;
 }
 
 .header__info {

@@ -1,48 +1,73 @@
 import Auth from "../Auth/Auth";
-import React from 'react';
-// import { Link } from 'react-router-dom';
-// import * as UserAuth from "../utils/UserAuth.js"
-
+import React, { useState, useEffect } from 'react';
+import { useFormValidation } from "../Validate/Validate";
 function Register({ onRegister }) {
-  // const [formValue, setFormValue] = useState({
-  //   email: '',
-  //   password: '',
-  // })
-  // const [error, setError] = useState(" ");
-  // const navigate = useNavigate();
-  // const { email, password } = formValue;
+  const { values, handleChange, errors, isValid, isError, resetForm } = useFormValidation();
+  const [isNameError, setIsNameError] = useState();
+  const [isPasswordError, setIsPasswordError] = useState();
+  const [isEmailError, setIsEmailError] = useState();
+  const [formValue, setFormValue] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
+  const { name, email, password } = formValue;
 
-  //   setFormValue({
-  //     ...formValue,
-  //     [name]: value
-  //   });
-  // }
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   onRegister(email, password);
-  // }
+
+  const handleChangeRegister = (e) => {
+    const { name, value } = e.target;
+    handleChange(e);
+    setFormValue({
+      ...formValue,
+      [name]: value
+    });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+
+    setFormValue({
+      ...formValue,
+      [name]: value
+    });
+    onRegister(formValue.name, email, password);
+  }
+
+  useEffect(() => {
+    if (!errors.name) {
+      setIsNameError(true)
+    } else { setIsNameError(false) }
+    if (!errors.email) {
+      setIsEmailError(true)
+    } else { setIsEmailError(false) }
+    if (!errors.password) {
+      setIsPasswordError(true)
+    } else { setIsPasswordError(false) }
+  }, [formValue])
+
   return (
     <>
       <Auth
-        name="register"
+        form="register"
         title="Добро пожаловать!"
         button="Зарегистрироваться"
         sign="Уже зарегистрированы?"
-      // onSubmit={handleSubmit}
-      // onChange={handleChange}
-      // email={formValue.email}
-      // password={formValue.password}
-      // error={error}
+        onSubmit={handleSubmit}
+        onChange={handleChangeRegister}
+        user={formValue.name}
+        nameErrors={errors.name}
+        email={formValue.email}
+        emailErrors={errors.email}
+        password={formValue.password}
+        passwordErrors={errors.password}
+        isValid={isValid}
+        isError={isError}
+        isNameError={isNameError}
+        isEmailError={isEmailError}
+        isPasswordError={isPasswordError}
       >
-        <label className="auth__field">
-          Имя
-          <input type="text" className="auth__input" id="name" name="name"
-            required minLength="2" maxLength="30" placeholder="Алина" />
-          {/* <span className="auth__error"></span> */}
-        </label>
       </Auth>
     </>
   );
